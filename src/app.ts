@@ -1,7 +1,8 @@
 import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
-import { booksRouter } from './router/books.router';
+import { booksRouter } from './router/books.router.js';
+
 export const app = express();
 app.disable('x-powered-by');
 

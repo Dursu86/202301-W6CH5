@@ -1,5 +1,5 @@
 import { Response, Request } from 'express';
-import { BooksFileRepo } from '../repository/books.file.repo';
+import { BooksFileRepo } from '../repository/books.file.repo.js';
 
 export class BooksController {
   // eslint-disable-next-line no-useless-constructor, no-unused-vars

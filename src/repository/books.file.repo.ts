@@ -1,6 +1,5 @@
 import fs from 'fs/promises';
-
-const file = '../../data/data.json';
+const file = 'data/data.json';
 
 export class BooksFileRepo {
   read() {
