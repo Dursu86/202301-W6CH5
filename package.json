@@ -15,7 +15,7 @@
     "Node",
     "Server"
   ],
-  "author": "Alejandro Cerezo",
+  "author": "Daniel Ursua",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^18.14.0",
