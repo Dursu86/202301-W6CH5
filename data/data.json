@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "Por si las voces vuelven",
+    "author": "Angel Martin",
+    "precio": "16,95 €"
+  },
+  {
+    "id": 2,
+    "name": "Un libro",
+    "author": "Herve Tullet",
+    "precio": "10,95 €"
+  },
+  {
+    "id": 3,
+    "name": "Dos Lobos",
+    "author": "Anónimo",
+    "precio": "19,95 €"
+  },
+  {
+    "id": 4,
+    "name": "Frida",
+    "author": "Sebastian Perez",
+    "precio": "45,95 €"
+  }
+]
