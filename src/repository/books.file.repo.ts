@@ -15,8 +15,8 @@ export interface BooksRepoStructure {
   viewAll(): Promise<Book[]>;
   viewOne(id: Book['id']): Promise<Book>;
   write(data: Book): Promise<void>;
-  // Update(info: Scrub): Promise<void>;
-  // delete(info: Scrub['id']): Promise<void>;
+  Update(info: Book): Promise<Book[]>;
+  // Delete(info: Scrub['id']): Promise<void>;
 }
 export class BooksFileRepo implements BooksRepoStructure {
   viewAll() {
@@ -35,12 +35,18 @@ export class BooksFileRepo implements BooksRepoStructure {
   async write(info: Book) {
     const data = await fs.readFile(file, 'utf-8');
     const parsedData: Book[] = JSON.parse(data);
-    const newID: number = Math.max(...parsedData.map((item) => item.id));
+    const newID: number = parsedData.length;
     info.id = newID + 1;
     const finalData = JSON.stringify([...parsedData, info]);
     await fs.writeFile(file, finalData, 'utf-8');
   }
 
-  // Update() {}
-  // delete() {}
+  Update(info: Book) {
+    return fs.readFile(file, { encoding: 'utf-8' }).then((data) => {
+      const parsedData: Book[] = JSON.parse(data);
+      return parsedData.map((item) => (item.id === info.id ? info : item));
+    });
+  }
+
+  // Delete() {}
 }

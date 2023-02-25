@@ -23,7 +23,10 @@ export class BooksController {
     resp.send('<h1>Write Successful</h1>');
   }
 
-  patch(_req: Request, _resp: Response) {}
+  patch(req: Request, resp: Response) {
+    this.repo.update(req.body).then();
+    resp.send('<h1> Changes done!');
+  }
 
   delete(_req: Request, _resp: Response) {}
 }
