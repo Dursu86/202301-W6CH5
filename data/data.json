@@ -3,24 +3,28 @@
     "id": 1,
     "name": "Por si las voces vuelven",
     "author": "Angel Martin",
-    "precio": "16,95 €"
+    "prize": "16,95 €",
+    "synopsis": "Un sorprendente testimonio sobre la locura. Un relato en primera persona sobre lo que supone perderse y tener que reconstruirse desde cero. Una historia vitalista que te agarra desde la primera línea"
   },
   {
     "id": 2,
     "name": "Un libro",
     "author": "Herve Tullet",
-    "precio": "10,95 €"
+    "prize": "10,95 €",
+    "synopsis": "Al abrir este libro solo se ve un círculo amarillo sobre la página en blanco. Entonces, se invita al lector a pulsar ese círculo con el dedo y averiguar qué ocurre. ¿Qué niño curioso podría resistirse a semejante desafío? Para saber la respuesta simplemente hay que dar la vuelta a la página ¡Y así empieza la magia! Círculos rojos, amarillos y azules se desdoblan, cambian de lugar, se colocan en fila, crecen Incluso están a punto de caerse por el borde del libro o volar hasta desaparecer. Todo depende de lo que el niño haga, si los aprieta, los frota, sopla sobre ellos o los agita. Este baile de círculos se va encadenando en una divertida complicidad con el lector de una forma espectacular y sorprendente."
   },
   {
     "id": 3,
     "name": "Dos Lobos",
     "author": "Anónimo",
-    "precio": "19,95 €"
+    "prize": "19,95 €",
+    "synopsis": "Cuenta una leyenda de los indios cheroquis que todos llevamos dentro un lobo bueno y un lobo malo. «¿Cuál de los dos ganará?», le pregunta la pequeña india al abuelo. La respuesta del viejo indio será sorprendente…"
   },
   {
     "id": 4,
     "name": "Frida",
     "author": "Sebastian Perez",
-    "precio": "45,95 €"
+    "prize": "45,95 €",
+    "synopsis": "Una mirada íntima e introspectiva, excepcional y portentosa, a la personalidad de la genial artista y uno de los principales iconos de la cultura latinoamericana del siglo XX. Como si fuera un libro de pensamientos, Sébastien Perez alterna sus textos poéticos con extractos de los cuadernos personales de Frida que nos transmiten sus más profundas emociones, mientras que Benjamin Lacombe las plasma en ilustraciones y nos transporta a lo más hondo de su alma a través de una sucesión de páginas troqueladas."
   }
 ]
