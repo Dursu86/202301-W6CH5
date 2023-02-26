@@ -28,7 +28,7 @@ export class BooksFileRepo implements BooksRepoStructure {
   viewOne(id: Book['id']) {
     return fs.readFile(file, { encoding: 'utf-8' }).then((data) => {
       const parsedData: Book[] = JSON.parse(data);
-      return parsedData.filter((item) => item.id === id)[0] as Book;
+      return parsedData.filter((item) => item.id === id)[0];
     });
   }
 
