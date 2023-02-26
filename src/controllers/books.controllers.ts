@@ -24,9 +24,12 @@ export class BooksController {
   }
 
   patch(req: Request, resp: Response) {
-    this.repo.update(req.body).then();
-    resp.send('<h1> Changes done!');
+    const id = Number(req.params.id);
+    this.repo.update(id, req.body).then((data) => resp.json(data));
   }
 
-  delete(_req: Request, _resp: Response) {}
+  delete(req: Request, resp: Response) {
+    const id = Number(req.params.id);
+    this.repo.delete(id).then((data) => resp.json(data));
+  }
 }
