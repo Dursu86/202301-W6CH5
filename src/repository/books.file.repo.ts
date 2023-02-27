@@ -1,67 +1,61 @@
-/* eslint-disable no-unused-vars */
 import fs from 'fs/promises';
+import { Book } from '../entities/book.entity';
+import { Repo } from './repo.interface';
 
 const file = 'data/data.json';
 
-type Book = {
-  id: number;
-  name: string;
-  author: string;
-  price: string;
-  synopsis: string;
-};
-
-export interface BooksRepoStructure {
-  viewAll(): Promise<Book[]>;
-  viewOne(id: Book['id']): Promise<Book>;
-  write(data: Book): Promise<void>;
-  update(id: number, newData: {}): Promise<void>;
-  // Delete(info: Scrub['id']): Promise<void>;
-}
-export class BooksFileRepo implements BooksRepoStructure {
-  viewAll() {
-    return fs
-      .readFile(file, { encoding: 'utf-8' })
-      .then((data) => JSON.parse(data) as Book[]);
+export class BooksFileRepo implements Repo<Book> {
+  async query(): Promise<Book[]> {
+    const data: string = await fs.readFile(file, { encoding: 'utf-8' });
+    return JSON.parse(data);
   }
 
-  viewOne(id: Book['id']) {
-    return fs.readFile(file, { encoding: 'utf-8' }).then((data) => {
-      const parsedData: Book[] = JSON.parse(data);
-      return parsedData.filter((item) => item.id === id)[0];
-    });
+  async queryId(id: string): Promise<Book> {
+    const initialData: string = await fs.readFile(file, { encoding: 'utf-8' });
+    const data: Book[] = JSON.parse(initialData);
+    const finalData = data.find((item) => item.id === id);
+    if (!finalData) throw new Error('Error id not found');
+    return finalData;
   }
 
-  async write(info: Book) {
-    const data = await fs.readFile(file, 'utf-8');
-    const parsedData: Book[] = JSON.parse(data);
-    const newID: number = parsedData.length;
-    info.id = newID + 1;
-    const finalData = JSON.stringify([...parsedData, info]);
-    await fs.writeFile(file, finalData, 'utf-8');
+  async create(info: Partial<Book>): Promise<Book> {
+    // Podriamos añadir una función para validar. Nunca nos podemos fiar de
+    // las validaciones del front.
+    const initialData: string = await fs.readFile(file, { encoding: 'utf-8' });
+    const data: Book[] = JSON.parse(initialData);
+    info.id = String(Math.floor(Math.random() * 1000_000));
+    const finalData = [...data, info];
+    await fs.writeFile(file, JSON.stringify(finalData), { encoding: 'utf-8' });
+    return info as Book;
   }
 
-  async update(id: number, newData: any) {
-    const data = await fs.readFile(file, 'utf-8');
-    const parseJSON = JSON.parse(data);
-    const updatedData = parseJSON.map((item: { id: number }) => {
-      if (item.id === id) {
-        return { ...item, ...newData };
+  async update(info: Partial<Book>): Promise<Book> {
+    if (!info.id) throw new Error('Not valid data');
+    const initialData: string = await fs.readFile(file, { encoding: 'utf-8' });
+    const data: Book[] = JSON.parse(initialData);
+    let updatedItem: Book = {} as Book;
+    const finalData = data.map((item) => {
+      if (item.id === info.id) {
+        updatedItem = { ...item, ...info };
+        return updatedItem;
       }
 
       return item;
     });
-    const finalFile = JSON.stringify(updatedData);
-    await fs.writeFile(file, finalFile, 'utf-8');
+
+    if (!updatedItem.id) throw new Error('Id not found');
+    await fs.writeFile(file, JSON.stringify(finalData), 'utf-8');
+    return updatedItem as Book;
   }
 
-  delete(id: Book['id']) {
-    const data = fs.readFile(file, 'utf-8').then((data) => {
-      const parsed = JSON.parse(data) as Book[];
-      const deleted = parsed.filter((item) => item.id !== id);
-      fs.writeFile(file, JSON.stringify(deleted));
-      return deleted;
+  async delete(id: string): Promise<void> {
+    const initialData: string = await fs.readFile(file, {
+      encoding: 'utf-8',
     });
-    return data;
+    const data: Book[] = JSON.parse(initialData);
+    const index = data.findIndex((item) => item.id === id);
+    if (index < 0) throw new Error('Id not found');
+    data.slice(index, 1);
+    await fs.writeFile(file, JSON.stringify(data), 'utf-8');
   }
 }
