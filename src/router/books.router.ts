@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { BooksController } from '../controllers/books.controllers.js';
+import { BooksController } from '../controllers/books.controller.js';
 import { BooksFileRepo } from '../repository/books.file.repo.js';
 
 // eslint-disable-next-line new-cap
