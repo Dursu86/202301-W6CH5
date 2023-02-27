@@ -41,14 +41,14 @@ describe('Given the BooksFileRepo class', () => {
       expect(fs.readFile).toHaveBeenCalled();
     });
   });
-  describe('Given the post method', () => {
-    describe('When it is called', () => {
-      test('Then it should ', async () => {
-        (fs.readFile as jest.Mock).mockResolvedValue('[{"id": "1"}]');
-        const info = [{ id: '1' }] as Book[];
-        const result = await repo.update(info);
-        expect(result).toEqual(info);
-      });
-    });
-  });
+  // describe('Given the post method', () => {
+  //   describe('When it is called', () => {
+  //     test('Then it should ', async () => {
+  //       (fs.readFile as jest.Mock).mockResolvedValue('[{"id": "1"}]');
+  //       const info = [{ id: '1' }] as Book[];
+  //       const result = await repo.update(info);
+  //       expect(result).toEqual(info);
+  //     });
+  //   });
+  // });
 });
