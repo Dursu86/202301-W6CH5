@@ -48,7 +48,7 @@ export class BooksFileRepo implements Repo<Book> {
     return updatedItem as Book;
   }
 
-  async delete(id: string): Promise<void> {
+  async delete(id: Book['id']): Promise<void> {
     const initialData: string = await fs.readFile(file, {
       encoding: 'utf-8',
     });
